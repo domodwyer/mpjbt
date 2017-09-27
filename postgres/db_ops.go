@@ -7,6 +7,7 @@ import (
 	"log"
 	"math/rand"
 	"net/url"
+	"runtime"
 	"strconv"
 
 	"github.com/domodwyer/mpjbt/idgen"
@@ -154,6 +155,11 @@ func NewProvider(endpoint *url.URL, tableName string) (*FuncProvider, error) {
 	if err := db.Ping(); err != nil {
 		return nil, err
 	}
+
+	// BUG: work around Go garbage collection bug:
+	//
+	// https://github.com/golang/go/issues/21056
+	runtime.GOMAXPROCS(2)
 
 	// DB func provider
 	return &FuncProvider{

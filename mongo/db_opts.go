@@ -6,6 +6,7 @@ import (
 	"log"
 	"math/rand"
 	"net/url"
+	"runtime"
 	"strconv"
 	"strings"
 
@@ -235,6 +236,11 @@ func NewProvider(endpoint *url.URL, tableName string) (*FuncProvider, error) {
 	if err := session.Ping(); err != nil {
 		return nil, err
 	}
+
+	// BUG: work around Go garbage collection bug:
+	//
+	// https://github.com/golang/go/issues/21056
+	runtime.GOMAXPROCS(4)
 
 	session.SetSafe(safe)
 	return &FuncProvider{
