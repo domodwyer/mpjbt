@@ -1,4 +1,4 @@
-##MongoDB / PostgreSQL JSONB Benchmarking Tool
+## MongoDB / PostgreSQL JSONB Benchmarking Tool
 
 
 MPJBT was wrote to gather data for our Percona Live EU 2017 talk - you can see our slides [here](https://docs.google.com/presentation/d/1c2RihL5G3teT0sxcngzjIs8ni6aSeAcL8Nzmvy3nj8Y/edit?usp=sharing). 
