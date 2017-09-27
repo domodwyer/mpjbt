@@ -6,6 +6,10 @@ MPJBT was wrote to gather data for our Percona Live EU 2017 talk - you can see o
 We found some *interesting* things.
 
 
+<p align="center">
+<img src="https://s3-eu-west-1.amazonaws.com/iab-assets/mpjbt.png" />
+</p>
+
 
 ## What's here?
 * `mpjbt` - benchmark tool source code (see releases for pre-built binaries)
