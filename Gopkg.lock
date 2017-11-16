@@ -17,7 +17,7 @@
   branch = "master"
   name = "github.com/globalsign/mgo"
   packages = [".","bson","internal/json","internal/sasl","internal/scram"]
-  revision = "df81fe48284ac7008b00556fc4f94e58eb612445"
+  revision = "5be15cc6a44937b6937a9487e1633f8a5fb25e4a"
 
 [[projects]]
   branch = "master"
