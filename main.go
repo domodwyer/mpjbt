@@ -12,6 +12,7 @@ import (
 	"os/signal"
 	"strconv"
 	"syscall"
+	"time"
 
 	"github.com/c2h5oh/datasize"
 	"github.com/domodwyer/mpjbt/mongo"
@@ -23,6 +24,7 @@ var (
 	endpoint, tableName, histPath, paddingSize string
 	updateFreq, readFreq, numWorkers           uint64
 	opsMax                                     uint64
+	timeout                                    time.Duration
 
 	workload string
 
@@ -39,6 +41,7 @@ func init() {
 	fs.StringVar(&workload, "workload", "insert", "Workload name")
 	fs.Uint64Var(&opsMax, "ops", 0, "Number of `operations` to perform (0 == unlimited)")
 	fs.Uint64Var(&numWorkers, "workers", 30, "Number of concurrent workers")
+	fs.DurationVar(&timeout, "timeout", time.Duration(0), "Stop if runtime exceeds `d` (0 == unlimited, valid suffixes: s,m,h")
 	fs.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Build %s (%s)\n\n", versionTag, versionDate)
 		fs.PrintDefaults()
@@ -142,6 +145,15 @@ func main() {
 		fmt.Printf("\nForcing...")
 		os.Exit(1)
 	}()
+
+	// If we exceed the timeout, stop the plan
+	if timeout != time.Duration(0) {
+		go func() {
+			time.Sleep(timeout)
+			dbplan.Stop()
+			fmt.Printf("\nStopped due to timeout (%v)...\n", timeout)
+		}()
+	}
 
 	// Go!
 	results := dbplan.Run(numWorkers, os.Stdout)
