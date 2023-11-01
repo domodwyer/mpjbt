@@ -7,7 +7,7 @@ We found some *interesting* things.
 
 
 <p align="center">
-<img src="https://s3-eu-west-1.amazonaws.com/iab-assets/mpjbt.png" />
+<img src="https://assets.itsallbroken.com/github/mpjbt.png" />
 </p>
 
 
