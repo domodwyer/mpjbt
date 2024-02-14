@@ -1,3 +1,6 @@
+> [!NOTE]
+> This was put together in 2017! That's a long time ago, things have definitely changed since :)
+
 ## MongoDB / PostgreSQL JSONB Benchmarking Tool
 
 
